@@ -1,3 +1,4 @@
+
 ## 项目工程说明
 
 ### 文件结构
@@ -35,6 +36,7 @@
 
 ### 模型运行
 ### 方式一：单条文本预测
+ ```python
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 
@@ -53,10 +55,12 @@ with torch.no_grad():
 print(f"预测结果: {pred}（1=谣言，0=非谣言）")
 
 ### 方式二：批量测试
-python test.py
+   ```bash
+   python test.py
 会生成 results.csv 文件，包含每条文本的预测结果。
 
 ### 方式三：生成判断依据
-python explanation_service.py
+   ```bash
+  python explanation_service.py
 会生成 results_with_explanation.csv 文件，包含预测结果 + 解释文字。
 
