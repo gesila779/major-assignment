@@ -1,36 +1,62 @@
-[README.md](https://github.com/user-attachments/files/28451946/README.md)
-# major-assignment
-人工智能导论大作业
-1. 检测模型负责人（谣言分类）（汪启瑞）
+## 项目工程说明
 
-训练 BERT 二分类模型
+### 文件结构
+├── bert_rumor_model/ # 训练好的BERT模型文件夹
+├── BERTmodel.py # BERT模型训练脚本
+├── explanation_service.py # LLM解释生成（调用交大API）
+├── test.py # 模型测试脚本
+├── results.csv # 预测结果
+├── results_with_explanation.csv # 预测结果+判断依据
+├── requirements.txt # 依赖库列表
+└── report.pdf # 大作业报告
 
-输入文本，输出 01 标签
 
-保证准确率不要太低
+### 部署安装
 
-2. 判断依据负责人（解释生成）（马艺瑄）
+1. **安装Python**（推荐版本 3.11）
 
-写函数：根据文本 + 预测标签，生成一段文字解释
+2. **安装依赖**
+   ```bash
+   pip install -r requirements.txt
 
-可以用规则（ifelse 拼句子）或调用交大 LLM 接口
+### 配置 API Key
 
-3. 整合负责人（串联前后）（商志超）
+本项目使用上海交通大学本地大模型 API 生成判断依据。
 
-把 1 和 2 的代码串成一个完整脚本
+1. **申请 API Key**：访问 https://claw.sjtu.edu.cn/guide/sjtu-api/，按指引申请。
 
-实现：输入文本 → 输出（标签 + 解释）
+2. **填写 Key**：打开 `explanation_service.py`，找到以下代码行：
+   ```python
+   SJTU_API_KEY = ""  
 
-保证能批量跑 val.csv
+### 确认模型文件
 
-4. 剩下的事情负责人（组长）（葛庆晔）
+确保 bert_rumor_model/ 文件夹内有 config.json、model.safetensors、tokenizer_config.json
 
-评估：算准确率、召回率、F1
+### 模型运行
+### 方式一：单条文本预测
+from transformers import BertTokenizer, BertForSequenceClassification
+import torch
 
-错误分析：挑 10 个错例分析原因
+model_path = "./bert_rumor_model"
+tokenizer = BertTokenizer.from_pretrained(model_path)
+model = BertForSequenceClassification.from_pretrained(model_path)
+model.eval()
 
-写报告（方法、结果、分析）
+text = "输入你要检测的文本"
+inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True, max_length=128)
 
-建 GitHub 仓库、写 README
+with torch.no_grad():
+    outputs = model(**inputs)
+    pred = torch.argmax(outputs.logits, dim=1).item()
 
-协调大家、整合最终提交
+print(f"预测结果: {pred}（1=谣言，0=非谣言）")
+
+### 方式二：批量测试
+python test.py
+会生成 results.csv 文件，包含每条文本的预测结果。
+
+### 方式三：生成判断依据
+python explanation_service.py
+会生成 results_with_explanation.csv 文件，包含预测结果 + 解释文字。
+
