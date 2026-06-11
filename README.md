@@ -53,14 +53,17 @@ with torch.no_grad():
     pred = torch.argmax(outputs.logits, dim=1).item()
 
 print(f"预测结果: {pred}（1=谣言，0=非谣言）")
+```
 
 ### 方式二：批量测试
    ```python
    python test.py
+```
 会生成 results.csv 文件，包含每条文本的预测结果。
 
 ### 方式三：生成判断依据
    ```python
   python explanation_service.py
+```
 会生成 results_with_explanation.csv 文件，包含预测结果 + 解释文字。
 
