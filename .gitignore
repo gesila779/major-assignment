@@ -1,0 +1,7 @@
+bert_rumor_model/
+*.safetensors
+*.bin
+*.pth
+*.ckpt
+*.pt
+*.json
