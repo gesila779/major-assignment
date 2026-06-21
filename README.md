@@ -2,14 +2,14 @@
 ## 项目工程说明
 
 ### 文件结构
-├── bert_rumor_model/ # 训练好的BERT模型文件夹
-├── BERTmodel.py # BERT模型训练脚本
-├── explanation_service.py # LLM解释生成（调用交大API）
-├── test.py # 模型测试脚本
-├── results.csv # 预测结果
-├── results_with_explanation.csv # 预测结果+判断依据
-├── requirements.txt # 依赖库列表
-└── report.pdf # 大作业报告
+├── bert_rumor_model/ # 训练好的BERT模型文件夹\
+├── BERTmodel.py # BERT模型训练脚本\
+├── explanation_service.py # LLM解释生成（调用交大API）\
+├── test.py # 模型测试脚本\
+├── results.csv # 预测结果\
+├── results_with_explanation.csv # 预测结果+判断依据\
+├── requirements.txt # 依赖库列表\
+└── report.pdf # 大作业报告\
 
 
 ### 部署安装
@@ -32,7 +32,7 @@
 
 ### 确认模型文件
 
-确保 bert_rumor_model/ 文件夹内有 config.json、model.safetensors、tokenizer_config.json
+确保 bert_rumor_model/ 文件夹内有 config.json、model.safetensors、tokenizer_config.json\
 下载链接：https://pan.sjtu.edu.cn/web/share/45c1ed126b708fd6e86681b1375051b8, 提取码: tluu
 
 ### 模型运行
