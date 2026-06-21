@@ -33,6 +33,7 @@
 ### 确认模型文件
 
 确保 bert_rumor_model/ 文件夹内有 config.json、model.safetensors、tokenizer_config.json
+下载链接：https://pan.sjtu.edu.cn/web/share/45c1ed126b708fd6e86681b1375051b8, 提取码: tluu
 
 ### 模型运行
 ### 方式一：单条文本预测
