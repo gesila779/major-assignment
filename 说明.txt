@@ -1,0 +1,4 @@
+model.safetensors文件是训练得到的BERT模型
+BERTmodel.py用于训练BERT模型
+test.py用于生成results.csv
+results.csv是val.csv加上训练的BERT模型的判断结果
